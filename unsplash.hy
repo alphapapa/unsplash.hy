@@ -13,6 +13,8 @@
 (def *output-file* (os.path.join *download-dir* "latest.jpg"))
 (def *random-url* "https://source.unsplash.com/random")
 
+(assert (os.path.isdir *download-dir*) (+ "Directory doesn't exist: " *download-dir*))
+
 ;; Rename existing file
 (when (os.path.exists *output-file*)
   (os.rename *output-file*
