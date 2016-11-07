@@ -11,7 +11,9 @@
 
 (def *download-dir* (os.path.expanduser "~/.cache/unsplash"))
 (def *output-file* (os.path.join *download-dir* "latest.jpg"))
-(def *random-url* "https://source.unsplash.com/random")
+;;  (def *random-url* "https://source.unsplash.com/random")
+;;  (def *random-url* "https://source.unsplash.com/category/nature")
+(def *random-url* "https://unsplash.it/1920/1080?random")
 
 (assert (os.path.isdir *download-dir*) (+ "Directory doesn't exist: " *download-dir*))
 
