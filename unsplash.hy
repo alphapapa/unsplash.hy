@@ -25,7 +25,8 @@
 ;; Download file to disk
 (let ((r (requests.get *random-url*)))
   (with [[f (open *output-file* "wb")]]
-        (.write f r.content)))
+        (when r.ok
+          (.write f r.content))))
 
 ;; Delete old wallpapers
 (let ((oldest-ts (datetime-to-timestamp (- (dt.now) (timedelta :days 30)))))
