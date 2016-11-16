@@ -24,7 +24,7 @@
 
 ;; Download file to disk
 (let ((r (requests.get *random-url*)))
-  (assert r.ok (+ "Request failed: " r.status-code))
+  (assert r.ok (+ "Request failed: " (str r.status-code)))
   (with [[f (open *output-file* "wb")]]
         (.write f r.content)))
 
