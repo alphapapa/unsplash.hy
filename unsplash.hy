@@ -17,14 +17,16 @@
 
 (assert (os.path.isdir *download-dir*) (+ "Directory doesn't exist: " *download-dir*))
 
-;; Rename existing file
-(when (os.path.exists *output-file*)
-  (os.rename *output-file*
-             (os.path.join *download-dir* (+ (str (os.path.getmtime *output-file*)) ".jpg"))))
-
 ;; Download file to disk
 (let ((r (requests.get *random-url*)))
   (assert r.ok (+ "Request failed: " (str r.status-code)))
+
+  ;; Rename existing file
+  (when (os.path.exists *output-file*)
+    (os.rename *output-file*
+               (os.path.join *download-dir* (+ (str (os.path.getmtime *output-file*)) ".jpg"))))
+
+  ;; Write new file
   (with [[f (open *output-file* "wb")]]
         (.write f r.content)))
 
